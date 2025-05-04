@@ -50,6 +50,6 @@ const createWindow = () => {
   window.loadFile("src/index.html");
 };
 
-app.whenReady().then(() => {
+app.on("ready", () => {
   createWindow();
 });
