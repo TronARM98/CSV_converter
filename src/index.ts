@@ -1,3 +1,4 @@
+import { app, BrowserWindow } from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -34,9 +35,21 @@ function convertBase64ToCsv(base64String: string, outputPath: string): void {
 }
 
 // Ejecución del programa
-try {
-  const base64 = convertCsvToBase64(inputCsvPath);
-  convertBase64ToCsv(base64, outputCsvPath);
-} catch (error) {
-  console.error("Error:", error);
-}
+// try {
+//   const base64 = convertCsvToBase64(inputCsvPath);
+//   convertBase64ToCsv(base64, outputCsvPath);
+// } catch (error) {
+//   console.error("Error:", error);
+// }
+
+const createWindow = () => {
+  const window = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
+  window.loadFile("src/index.html");
+};
+
+app.whenReady().then(() => {
+  createWindow();
+});
